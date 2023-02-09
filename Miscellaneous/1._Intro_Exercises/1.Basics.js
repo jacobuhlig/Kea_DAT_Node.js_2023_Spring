@@ -9,8 +9,14 @@ const lastName = "Latif";
 // show in the console
 // My first name is Anders and my last name is Latif
 
+// concatenating 
 console.log(`My first name is ` + firstName +
     ' and my last name is ' + lastName);
+
+
+// Template literals 
+console.log(`My first name is ${firstName} and my last name is ${lastName}`);
+
 
 // --------------------------------------
 // Exercise 2 - Numbers and Strings
@@ -22,7 +28,7 @@ const number = 1;
 // The result should be 2023
 // You cannot touch line 1 or 2
 
-
+// One way to do it - type conversion
 const result = Number(year) + number;
 console.log(result);
 

@@ -1,13 +1,21 @@
+'use strict';
+
 const express = require("express");
 const app = express();
 
-app.use(express.json()); // parses the body as json
+app.use(express.static("public")); // static is the relevant word word for the conjunction of frontend files
 
 console.log(__dirname);
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/frontpage.html");
+  res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+});
+
+
+app.get("/tanks", (req, res) => {
+  res.sendFile(__dirname + "/public/tanks/tanks.html");
 })
+
 
 const PORT = 8080;
 
@@ -20,6 +28,3 @@ app.listen(PORT, (error) => { // This is a way of error handling
     console.log(`Server is running on port ${PORT}`);
   }
 });
-
-
-

@@ -46,6 +46,7 @@ module.exports = {
     },
 
 
+
     // -----------------POST-------------------- //
 
     createBird: function (bird) {
@@ -53,6 +54,33 @@ module.exports = {
         const newBird = { id: idToCome, ...bird };
         this.birds.push(newBird);
         return newBird;
-    }
+    },
 
+
+
+    // -----------------UPDATE------------------- //
+
+    updateBird: function (id, bird) {
+        const foundBird = this.birds.find(bird => bird.id === Number(id));
+        if (!foundBird) { return `Bird with id: ${id} doesn't exist.` };
+        if (bird.species) { foundBird.species = bird.species };
+        if (bird.color) { foundBird.color = bird.color };
+        return foundBird;
+    },
+
+
+
+    // -----------------DELETE------------------- //
+
+    deleteBird: function (id) {
+        //Deletes elements from the original array, instead of returning a new and modified one (this was on purpose)
+        const index = this.birds.findIndex(bird => bird.id === Number(id));
+        // -1 === false
+        if (index !== -1) {
+            this.birds.splice(index, 1);
+            return true;
+        } else {
+            return `Bird with id: ${id} doesn't exist.`;
+        }
+    }
 }

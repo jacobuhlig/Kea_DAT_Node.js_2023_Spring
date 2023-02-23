@@ -21,13 +21,16 @@ app.listen(PORT, (error) => { // This is a way of error handling
 });
 
 
+
 // -----------------POST------------------- //
 
+// Creating a bird
 app.post("/birds", (req, res) => {
     const { ...bird } = req.body;
     const newBird = birds.createBird(bird);
     res.send({ data: newBird });
 });
+
 
 
 // -----------------GET------------------- //
@@ -45,3 +48,24 @@ app.get("/birds/:id", (req, res) => {
 });
 
 
+
+// -----------------UPDATE------------------- //
+
+// Update single bird
+app.patch("/birds/:id", (req, res) => {
+    const { id } = req.params;
+    const { ...bird } = req.body;
+    const updatedBird = birds.updateBird(id, bird);
+    res.send({ data: updatedBird });
+});
+
+
+
+// -----------------DELETE------------------- //
+
+// Delete single bird
+app.delete("/birds/:id", (req, res) => {
+    const { id } = req.params;
+    const foundBird = birds.deleteBird(id);
+    res.send({ data: foundBird });
+});

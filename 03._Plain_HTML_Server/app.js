@@ -1,30 +1,50 @@
-'use strict';
-
 const express = require("express");
 const app = express();
 
-app.use(express.static("public")); // static is the relevant word word for the conjunction of frontend files
+app.use(express.static("public"));
 
-console.log(__dirname);
+const tanks = [
+    { name: "Leopard", nationality: "Germany" },
+    { name: "Tiger", nationality: "Germany", year: 1943 },
+    { name: "M1 Abrams", version: "M1" }
+];
+let visitorCount = 0;
+
+/* Pages */
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+    res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+});
+
+app.get("/tanks", (req, res) => {
+    res.sendFile(__dirname + "/public/tanks/tanks.html");
+});
+
+app.get("/visitors", (req, res) => {
+    res.sendFile(__dirname + "/public/visitors/visitors.html");
+});
+
+/* API */
+
+app.get("/api/tanks", (req, res) => {
+    res.send({ data: tanks });
+});
+
+app.get("/api/visitors", (req, res) => {
+    res.send({ data: visitorCount });
+});
+
+app.put("/api/visitors", (req, res) => {
+    res.send({ data: ++visitorCount });
 });
 
 
-app.get("/tanks", (req, res) => {
-  res.sendFile(__dirname + "/public/tanks/tanks.html");
-})
-
 
 const PORT = 8080;
-
-
-app.listen(PORT, (error) => { // This is a way of error handling
-  if (error) { // the type of error is undefined
-    console.log(error);
-    return;
-  } else {
-    console.log(`Server is running on port ${PORT}`);
-  }
+app.listen(PORT, (error) => {
+    if (error) {
+        console.log(error);
+        return;
+    }
+    console.log("Server is running on port", PORT);
 });

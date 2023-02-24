@@ -61,6 +61,46 @@ app.post("/package", (req, res) => {
   res.send({ message: req.body });
 });
 
+// time
+app.get("/time/time", (req, res) => {
+  res.send({
+    timeUTC: new Date(),
+    timeLocal: Date(),
+    unixTimestamp: Date.now()
+  });
+});
+
+// assignment - get the current date and month in English
+
+// console.log(new Date().toLocaleDateString("da-dk", {weekday: "short"})); //fre
+// console.log(new Date().toLocaleDateString("da-dk", {weekday: "long"})); //fredag
+
+// console.log(new Date().toLocaleDateString("da-dk", {month: "short"})); //feb.
+// console.log(new Date().toLocaleDateString("da-dk", {month: "long"})); //februar
+
+const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+app.get("/time/day", (req, res) => {
+  res.send({
+    data: days[new Date().getDay()]
+  });
+});
+
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+app.get("/time/month", (req, res) => {
+  res.send({
+    data: months[new Date().getMonth()]
+  });
+});
+
+
+
+// console.log(new Date());
+// console.log(Date());
+// console.log(Date.now());
+
 
 // app.get("/packages", (req, res) => {
 //   console.log(req.body);

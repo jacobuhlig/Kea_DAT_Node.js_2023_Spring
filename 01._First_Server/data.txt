@@ -1,8 +1,0 @@
-anatomy of an URL
-
-protocol
-|      domain     endpoint      path variable
-http://google.com/kickdinosaur/:id?size=1200
-              Top-level domain  query string
-
-

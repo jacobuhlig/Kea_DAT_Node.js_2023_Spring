@@ -8,6 +8,6 @@
   },
 
   "scripts": {
-    "build": "npm i"
+    "build:azure": "npm i"
   }
 }

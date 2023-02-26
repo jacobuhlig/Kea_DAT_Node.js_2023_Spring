@@ -5,5 +5,10 @@
 
   "engines": {
     "node": "^16.17.0"
+  },
+
+  "scripts": {
+    "build": "npm run build",
+    "build:azure": "npm run build"
   }
 }

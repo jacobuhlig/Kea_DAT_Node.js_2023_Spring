@@ -1,13 +1,5 @@
 {
   "dependencies": {
     "express": "^4.18.2"
-  },
-
-  "engines": {
-    "node": "^16.17.0"
-  },
-
-  "scripts": {
-    "build:azure": "npm i"
   }
 }

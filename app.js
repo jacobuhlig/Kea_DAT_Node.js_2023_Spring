@@ -8,8 +8,8 @@ app.use(express.static("public"));
 // Pages
 
 app.get("/", (req, res) => {
-  res.send("Hello mister");
-  // res.sendFile(__dirname + "public/index.html");
+  // res.send("Hello mister");
+  res.sendFile(__dirname + "public/index.html");
 });
 
 

@@ -1,7 +1,7 @@
 
 
 function start() {
-  fetch("/api/time")
+  fetch("http://localhost:3000/api/time")
   .then(response => response.json())
   .then(result => {
     

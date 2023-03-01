@@ -8,7 +8,7 @@ app.use(express.static("public"));
 // Pages
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/public/frontpage/frontpage.html");
+  res.sendFile(__dirname + "public/index.html");
 });
 
 

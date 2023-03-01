@@ -1,6 +1,6 @@
 
 
-function isItFriday() {
+function start() {
   fetch("/api/time")
   .then(response => response.json())
   .then(result => {

@@ -19,3 +19,6 @@ function start() {
     dayDiv.appendChild(createP);
   });
 };
+
+const button = document.getElementById("button");
+button.addEventListener("click", start);

@@ -22,7 +22,7 @@ const weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Frida
 
 // API
 
-app.get("/api/time", (req, res)  => {
+app.get("https://jolly-grass-0fb4ff203.2.azurestaticapps.net/:3000/api/time", (req, res)  => {
   res.send({data: weekdays[new Date().getDay()]});
 });
 

@@ -2,7 +2,7 @@
 
 function start() {
   fetch("https://jolly-grass-0fb4ff203.2.azurestaticapps.net:3000/api/time")
-  .then(response => response.json())
+  // .then(response => response.json())
   .then(result => {
     
     const dayDiv = document.getElementById("verify-day-wrapper");

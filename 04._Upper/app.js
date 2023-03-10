@@ -6,7 +6,7 @@ const app = express();
 import path from "path";
 
 // This is not necessarily the best method, because the user would then have to serve the actual path, every time a site, would want to be accessed
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 // const jokes = require("./util/jokes"); //Omitting the extension ".js", is allowed, much to the chagrin of the Node developer
 // import jokes from "./util/jokes.js";
@@ -20,6 +20,12 @@ app.get("/", (req, res) => {
 app.get("/quests", (req, res) => {
   res.sendFile(path.resolve(partOfPath + "IRLQuests/IRLQuests.html"));
 });
+
+app.get("/jokes", (req, res) => {
+  res.sendFile(path.resolve(partOfPath + "jokes/jokes.html"));
+});
+
+// assignment - create a joke page and serve it
 
 const PORT = 8080;
 app.listen(PORT, (error) => {

@@ -29,6 +29,8 @@
   },
   "homepage": "https://github.com/jacobuhlig/Kea_DAT_Node.js_2023_Spring#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "node-fetch": "^3.3.0",
+    "sentiment": "^5.0.2"
   }
 }

@@ -1,3 +1,4 @@
+const { response } = require("express");
 const express = require("express");
 const app = express();
 
@@ -27,6 +28,14 @@ app.get("/visitors", (req, res) => {
 
 app.get("/museumguards", (req, res) => {
   res.sendFile(__dirname + "/public/museumGuards/guards.html");
+});
+
+app.get("/proxy", async (req, res) => {
+  // task - make a request to https://google.com
+  // task serve the text data
+  fetch("https://google.com")
+    .then((response) => response.text())
+    .then((result) => res.send(result));
 });
 
 /* API */

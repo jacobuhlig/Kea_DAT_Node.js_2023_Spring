@@ -9,24 +9,64 @@ import path from "path";
 app.use(express.static("public"));
 
 // const jokes = require("./util/jokes"); //Omitting the extension ".js", is allowed, much to the chagrin of the Node developer
-// import jokes from "./util/jokes.js";
+import jokes from "./util/jokes.js";
 
-const partOfPath = "public/pages/"; // could possibly result in another
+//Below gives us a buffer of bytes (binary),
+//then we've converted it into readable html using 'toString()'
+import fs from "fs";
 
+import templateEngine from "./util/templateEngine.js";
+
+// Components
+// task - read the navbar and the footer here
+// const navbar = fs.readFileSync("./public/components/navbar/navbar.html").toString();
+// const footer = fs.readFileSync("./public/components/footer/footer.html").toString();
+
+// Pages
+// const frontpageElement = fs.readFileSync("./public/pages/frontpage/frontpage.html").toString();
+// const IRLQuestsElement = fs.readFileSync("./public/pages/IRLQuests/IRLQuests.html").toString();
+// const jokesElement = fs.readFileSync("./public/pages/jokes/jokes.html").toString();
+// console.log(frontpageElement);
+// console.log(IRLQuestsElement);
+// console.log(jokesElement);
+
+
+const partOfPath = "./public/pages/";
+
+// Constructed pages
+const frontpagePath = templateEngine.readPage(partOfPath + "frontpage/frontpage.html");
+const frontpagePage = templateEngine.renderPage(frontpagePath, {
+  tabTitle: "Upper | Welcome"
+});
+
+
+
+const IRLQuestsPath = templateEngine.readPage(partOfPath + "IRLQuests/IRLQuests.html");
+const IRLQuestsPage = templateEngine.renderPage(IRLQuestsPath,  {
+  tabTitle: "Upper | IRL Quests"
+});
+
+
+// todo SPA
+
+
+
+// Endpoints
 app.get("/", (req, res) => {
-  res.sendFile(path.resolve(partOfPath + "frontpage/frontpage.html"));
+  res.send(frontpagePage)
+});
+
+app.get("/jokes", async (req, res) => {
+    const jokesPage = await templateEngine.renderJokePage();
+    res.send(jokesPage);    
 });
 
 app.get("/quests", (req, res) => {
-  res.sendFile(path.resolve(partOfPath + "IRLQuests/IRLQuests.html"));
+  res.send(IRLQuestsPage)
 });
 
-app.get("/jokes", (req, res) => {
-  res.sendFile(path.resolve(partOfPath + "jokes/jokes.html"));
-});
 
-// assignment - create a joke page and serve it
-
+// Status message
 const PORT = 8080;
 app.listen(PORT, (error) => {
   if (error) {

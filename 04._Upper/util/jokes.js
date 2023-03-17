@@ -6,7 +6,7 @@
 // todo - fetch a joke from api, and log it to the console
 // the api url: https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,political,racist,sexist,explicit
 
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 import Sentiment from "sentiment";
 const sentiment = new Sentiment();
 
@@ -29,9 +29,11 @@ async function getJoke() {
   const { score } = sentiment.analyze(jokeToAnalyze);
   if (score < 0) {
     // I don't like that joke .. I want to get a new one
-    getJoke();
+    return await getJoke();
   }
-  return result;
+  else {
+    return result;
+  }
 }
 
 // console.log(sentiment.analyze("Node is shit"));
@@ -45,6 +47,6 @@ async function getJoke() {
 //   positive: [],
 //   negative: [ 'shit' ]
 
-console.log(await getJoke());
+// console.log(await getJoke());
 
-export default { getJoke };
+export default getJoke;

@@ -7,6 +7,8 @@ import path from "path";
 
 // This is not necessarily the best method, because the user would then have to serve the actual path, every time a site, would want to be accessed
 app.use(express.static("public"));
+app.use(express.urlencoded({extended : true}));
+
 
 // const jokes = require("./util/jokes"); //Omitting the extension ".js", is allowed, much to the chagrin of the Node developer
 import jokes from "./util/jokes.js";
@@ -47,6 +49,12 @@ const IRLQuestsPage = templateEngine.renderPage(IRLQuestsPath,  {
 });
 
 
+const contactPath = templateEngine.readPage(partOfPath + "contact/contact.html");
+const contactPage = templateEngine.renderPage(contactPath,  {
+  tabTitle: "Upper | Contact"
+});
+
+
 // todo SPA
 
 
@@ -65,7 +73,26 @@ app.get("/quests", (req, res) => {
   res.send(IRLQuestsPage)
 });
 
-console.log(process.env);
+app.get("/contact", (req, res) => {
+  res.send(contactPage)
+});
+
+if (process.env.ENV === "DEV") {
+  console.log(process.env.ENV);
+};
+
+
+// API
+
+app.post("/api/contact", (req, res) => {
+  console.log(req.body);
+  
+  res.send(req.body);
+  // res.redirect("/");
+})
+
+
+
 
 // Status message
 const PORT = process.env.PORT || 8082;

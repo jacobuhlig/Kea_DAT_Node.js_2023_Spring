@@ -65,9 +65,10 @@ app.get("/quests", (req, res) => {
   res.send(IRLQuestsPage)
 });
 
+console.log(process.env);
 
 // Status message
-const PORT = 8080;
+const PORT = process.env.PORT || 8082;
 app.listen(PORT, (error) => {
   if (error) {
     console.log(error);

@@ -40,6 +40,9 @@ app.get("/proxy", async (req, res) => {
 
 /* API */
 
+// task create three routers called tanksRouter.js, visitorsRouter.js, guardsRouter.js
+// 
+
 app.get("/api/tanks", (req, res) => {
   res.send({ data: getTanks() });
 });

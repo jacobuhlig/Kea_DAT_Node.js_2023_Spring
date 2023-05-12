@@ -10,7 +10,7 @@
       credentials: "include",
       body: JSON.stringify({ username }),
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       }
     });
     myUsername.set(username);

@@ -2,13 +2,16 @@ import express from 'express';
 const app = express();
 app.use(express.json());
 
+// app.use(express.static("../client/dist"));
+
 import session from 'express-session';
-app.use(session({
+const sessionMiddleware = session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }
-}));
+});
+app.use(sessionMiddleware);
 
 //implement session middleware (found here: https://socket.io/docs/v3/middlewares/)
 
@@ -29,10 +32,18 @@ const io = new Server(server, {
   }
 });
 
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+io.use(wrap(sessionMiddleware))
+
 io.on('connection', (socket) => {
   console.log(`A socket connected`);
+  if(socket.request.session.username) {
+    console.log("Welcome", socket.request.session.username);
+  }
+
   socket.on("a client chose a color", (data) => {
     console.log(data);
+    data.username = socket.request.session.username;
     io.emit("a new color just dropped", data);
   });
 });

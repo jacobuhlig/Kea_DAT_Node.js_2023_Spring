@@ -3,7 +3,7 @@
 </script>
 
 {#each $colorsList as colorPick}
-  <div style={'backgroundColor'}>
-    <h4>colorPick.username</h4>
+  <div style={`background-color: ${colorPick.color}`}>
+    <h4>{colorPick.username}</h4>
   </div>  
-{/each
+{/each}
